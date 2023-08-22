@@ -6,6 +6,8 @@ export default async (req, res) => {
         if (req.query.city) {
             // Busqueda de coincidencia con el comienzo en backend
             // queries.city = new RegExp('^' + req.query.city, 'i')
+            
+            // Busqueda de coincidencia con el comienzo en frontend
             queries.city = new RegExp(req.query.city, 'i')
         }
         if (req.query.country) {
