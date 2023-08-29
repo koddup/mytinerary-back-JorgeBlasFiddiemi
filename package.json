@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "users": "node ./models/User.js",
-    "cities": "node ./models/data/cities.js"
+    "users": "node ./models/data/users.js",
+    "cities": "node ./models/data/cities.js",
+    "itineraries": "node ./models/data/itineraries.js"
   },
   "dependencies": {
     "-": "^0.0.1",
