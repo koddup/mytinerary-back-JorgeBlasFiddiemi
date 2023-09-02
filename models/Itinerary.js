@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 
 let schema = new Schema({
-    cityID: { type: Schema.Types.ObjectId, ref: 'City' },
-    postedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+    cityID: { type: Schema.Types.ObjectId, ref: 'cities' },
+    postedBy: { type: Schema.Types.ObjectId, ref: 'users' },
     picture: { type: String, required: true, default: '' },
     name: { type: String, required: true, default: '' },
     price: { type: Number, required: true, default: 0 },

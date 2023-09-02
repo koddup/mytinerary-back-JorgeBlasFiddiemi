@@ -3,12 +3,15 @@ import { Types } from 'mongoose'
 
 export default async (req, res) => {
     try {
-        let { id } = req.params
-        if (Types.ObjectId.isValid(id)) {
-            const itinerary = await Itinerary.findById(id).select('')
+        let queries = {}
+        let { cityID } = req.params
+        if (Types.ObjectId.isValid(cityID)) {
+            queries.cityID = cityID
+            const itineraries = await Itinerary.find(queries).select('').populate("postedBy")
+            console.log(itineraries);
             return res.status(200).json({
                 success: true,
-                response: itinerary,
+                response: itineraries,
             })
         } else {
             return res.status(500).json({
