@@ -1,7 +1,5 @@
 import {Router} from 'express';
 import signup from '../controllers/auth/signup.js';
-import createMany from '../controllers/auth/createMany.js';
-import readOne from '../controllers/auth/readOne.js';
 import validator from '../middlewares/validator.js';
 import { signupSchema } from '../validators/signupValidator.js';
 import singin from '../controllers/auth/singin.js';

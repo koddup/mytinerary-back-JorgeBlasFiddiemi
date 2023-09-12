@@ -4,7 +4,9 @@ import bcryptjs from 'bcryptjs'
 
 export default async (req, res) => {
     try {
-        const userDB = await User.findOne({ mail: req.body.mail })
+        let { mail, password } = req.body
+        console.log(mail + " - " + password);
+        const userDB = await User.findOne({ mail: mail })
         if (!userDB) {
             return res.status(400).json({
                 success: false,
@@ -12,7 +14,7 @@ export default async (req, res) => {
             })
         }
 
-        let passValid = bcryptjs.compareSync(req.body.password, userDB.password)
+        let passValid = bcryptjs.compareSync(password, userDB.password)
 
         if (!passValid) {
             return res.status(400).json({
@@ -21,11 +23,14 @@ export default async (req, res) => {
             })
         }
 
-        let user = { firstName: userDB.firstName, 
-            lastName: userDB.lastName, 
-            mail: userDB.mail, 
-            photo: userDB.photo, 
-            country: userDB.country }
+        let user = {
+            firstName: userDB.firstName,
+            lastName: userDB.lastName,
+            mail: userDB.mail,
+            photo: userDB.photo,
+            country: userDB.country
+        }
+
         const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '1h' })
 
         return res.status(200).json({
